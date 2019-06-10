@@ -7,7 +7,7 @@
     "build": "rm -rf compiled && mkdir compiled && babel src -d compiled && rm -rf dist && mkdir dist && uglifyjs compiled/* -o dist/alttexts.min.js --compress --mangle && rm -rf compiled",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint":"eslint"
+    "eslint": "eslint"
   },
   "author": "korshunad",
   "license": "MIT",
@@ -20,8 +20,9 @@
     "uglify-js": "^3.6.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "eslint": "^5.16.0"
   }
 }

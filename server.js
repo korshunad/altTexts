@@ -1,7 +1,7 @@
 const express = require('express');
+const rateLimit = require("express-rate-limit");
 
 require('dotenv').config()
-
 const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const PORT = process.env.PORT || 7777;
 
@@ -12,6 +12,13 @@ const vision = require('@google-cloud/vision');
 
 const client = new vision.ImageAnnotatorClient();
 const image2base64 = require('image-to-base64');
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10 // limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
 
 app.use(bodyParser());
 

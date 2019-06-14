@@ -99,7 +99,6 @@ app.get('/get-images', (req, res) => {
       const $ = cheerio.load(html);
 
       $("img").each(function(i, image) {
-
         results.push(url.resolve(url_to_parse, $(image).attr('src')));
       });
       console.log(results);

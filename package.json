@@ -8,7 +8,8 @@
     "build": "rm -rf compiled && mkdir compiled && babel src -d compiled && rm -rf dist && mkdir dist && uglifyjs compiled/* -o dist/alttexts.min.js --compress --mangle && rm -rf compiled",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "preinstall": "node gcpSetup.js"
   },
   "engines": {
     "node": "10.x"

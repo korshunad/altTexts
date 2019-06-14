@@ -91,6 +91,7 @@ app.get('/get-images', (req, res) => {
     })
     .then(function(page) {
       return page.goto(url_to_parse).then(function() {
+        console.log(url_to_parse);
         return page.content();
       });
     })
@@ -101,11 +102,12 @@ app.get('/get-images', (req, res) => {
 
         results.push(url.resolve(url_to_parse, $(image).attr('src')));
       });
-
+      console.log(results);
       return res.send(results);
     })
     .catch(function(err) {
       //handle error
+      console.log(err);
     });
 
 });

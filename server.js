@@ -22,7 +22,7 @@ const limiter = rateLimit({
   max: 10 // limit each IP to 100 requests per windowMs
 });
 
-app.use("/get-alt", apiLimiter);
+app.use("/get-alt", limiter);
 
 
 app.use(bodyParser());

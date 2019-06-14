@@ -1,14 +1,14 @@
 {
   "name": "alttexts",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Automatically generated Alt Texts using Google Vision API, proof of concept",
   "main": "dist/alttexts.js",
+  "repository": "https://github.com/korshunad/altTexts",
   "scripts": {
     "build": "rm -rf compiled && mkdir compiled && babel src -d compiled && rm -rf dist && mkdir dist && uglifyjs compiled/* -o dist/alttexts.min.js --compress --mangle && rm -rf compiled",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint",
-    "preinstall" : "node gcpSetup.js"
+    "eslint": "eslint"
   },
   "engines": {
     "node": "10.x"
@@ -21,7 +21,9 @@
     "dotenv": "^8.0.0",
     "express": "4.16.3",
     "express-rate-limit": "^5.0.0",
+    "cheerio": "^1.0.0-rc.3",
     "image-to-base64": "^2.0.1",
+    "puppeteer": "^1.17.0",
     "uglify-js": "^3.6.0"
   },
   "devDependencies": {

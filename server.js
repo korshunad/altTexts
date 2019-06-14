@@ -1,6 +1,10 @@
 const express = require('express');
 const rateLimit = require("express-rate-limit");
 
+const cheerio = require('cheerio');
+const url = require('url');
+const puppeteer = require('puppeteer');
+
 require('dotenv').config()
 const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const PORT = process.env.PORT || 7777;
@@ -66,6 +70,35 @@ app.get('/get-alt', (req, res) => {
         console.log(error);
       }
     )
+});
+
+app.get('/get-images', (req, res) => {
+  const url_to_parse = decodeURIComponent(req.query.url);
+  let results = [];
+  puppeteer
+    .launch()
+    .then(function(browser) {
+      return browser.newPage();
+    })
+    .then(function(page) {
+      return page.goto(url_to_parse).then(function() {
+        return page.content();
+      });
+    })
+    .then(function(html) {
+      const $ = cheerio.load(html);
+
+      $("img").each(function(i, image) {
+
+        results.push(url.resolve(url_to_parse, $(image).attr('src')));
+      });
+
+      return res.send(results);
+    })
+    .catch(function(err) {
+      //handle error
+    });
+
 });
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

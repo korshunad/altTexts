@@ -77,7 +77,7 @@ app.get('/get-images', (req, res) => {
   const url_to_parse = decodeURIComponent(req.query.url);
   let results = [];
   puppeteer
-    .launch()
+    .launch({ args: ['--no-sandbox'] })
     .then(function(browser) {
       return browser.newPage();
     })

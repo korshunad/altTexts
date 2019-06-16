@@ -22,6 +22,12 @@ const limiter = rateLimit({
   max: 10 // limit each IP to 100 requests per windowMs
 });
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use("/get-alt", limiter);
 
 

@@ -21,7 +21,7 @@
     "@google-cloud/vision": "^1.1.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
-    "express": "4.16.3",
+    "express": "4.19.2",
     "express-rate-limit": "^5.0.0",
     "cheerio": "^1.0.0-rc.3",
     "image-to-base64": "^2.0.1",
